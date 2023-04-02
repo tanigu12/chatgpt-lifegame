@@ -75,7 +75,8 @@ let intervalId;
 
 document.getElementById("start").addEventListener("click", () => {
     document.getElementById("mode").textContent = "start";
-    
+    buttonClicked(document.getElementById('start'));
+
     intervalId = setInterval(() => {
         grid = getNextGeneration(grid);
         updateGridDisplay(grid);
@@ -84,17 +85,23 @@ document.getElementById("start").addEventListener("click", () => {
 
 document.getElementById("stop").addEventListener("click", () => {
     document.getElementById("mode").textContent = "stop";
+    buttonClicked(document.getElementById('step'));
+
     clearInterval(intervalId);
 });
 
 document.getElementById("step").addEventListener("click", () => {
     document.getElementById("mode").textContent = "step";
+    buttonClicked(document.getElementById('stop'));
+
     grid = getNextGeneration(grid);
     updateGridDisplay(grid);
 });
 
 document.getElementById("clear").addEventListener("click", () => {
     document.getElementById("mode").textContent = "clear";
+    buttonClicked(document.getElementById('clear'));
+
     grid = createGrid(numRows, numCols);
     updateGridDisplay(grid);
 });
@@ -151,11 +158,3 @@ function buttonClicked(button) {
   }, 500);
 }
 
-const startButton = document.getElementById('start');
-const stepButton = document.getElementById('step');
-const stopButton = document.getElementById('stop');
-const clearButton = document.getElementById('clear');
-startButton.onclick = () => buttonClicked(startButton);
-stepButton.onclick = () => buttonClicked(stepButton);
-stopButton.onclick = () => buttonClicked(stopButton);
-clearButton.onclick = () => buttonClicked(clearButton);
