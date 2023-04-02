@@ -85,14 +85,14 @@ document.getElementById("start").addEventListener("click", () => {
 
 document.getElementById("stop").addEventListener("click", () => {
     document.getElementById("mode").textContent = "stop";
-    buttonClicked(document.getElementById('step'));
+    buttonClicked(document.getElementById('stop'));
 
     clearInterval(intervalId);
 });
 
 document.getElementById("step").addEventListener("click", () => {
     document.getElementById("mode").textContent = "step";
-    buttonClicked(document.getElementById('stop'));
+    buttonClicked(document.getElementById('step'));
 
     grid = getNextGeneration(grid);
     updateGridDisplay(grid);
