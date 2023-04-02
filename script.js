@@ -74,6 +74,8 @@ function updateGridDisplay(grid) {
 let intervalId;
 
 document.getElementById("start").addEventListener("click", () => {
+    document.getElementById("mode").textContent = "start";
+    
     intervalId = setInterval(() => {
         grid = getNextGeneration(grid);
         updateGridDisplay(grid);
@@ -81,15 +83,18 @@ document.getElementById("start").addEventListener("click", () => {
 });
 
 document.getElementById("stop").addEventListener("click", () => {
+    document.getElementById("mode").textContent = "stop";
     clearInterval(intervalId);
 });
 
 document.getElementById("step").addEventListener("click", () => {
+    document.getElementById("mode").textContent = "step";
     grid = getNextGeneration(grid);
     updateGridDisplay(grid);
 });
 
 document.getElementById("clear").addEventListener("click", () => {
+    document.getElementById("mode").textContent = "clear";
     grid = createGrid(numRows, numCols);
     updateGridDisplay(grid);
 });
@@ -111,7 +116,6 @@ document.getElementById("grid").addEventListener("click", (event) => {
 
 // Function to generate a glider gun at the specified row and column
 function generateGliderGun(grid, row, col) {
-    console.log('aaa');
     let gun = createGrid(numRows, numCols);
   
     gun[0][24] = true;
@@ -126,8 +130,6 @@ function generateGliderGun(grid, row, col) {
     gun[9][22] = gun[9][23] = true;
     gun[10][24] = true;
 
-    console.log(gun);
-    
     // Copy the gun pattern to the grid
     for (let i = 0; i < gun.length; i++) {
       for (let j = 0; j < gun[0].length; j++) {
@@ -137,4 +139,23 @@ function generateGliderGun(grid, row, col) {
     updateGridDisplay(grid);
   }
   
-  
+// ボタンをクリックした際に実行される関数を定義する
+function buttonClicked(button) {
+  // ボタンの文字色を白色、背景色を青色に変更する
+  button.style.color = 'white';
+  button.style.backgroundColor = 'blue';
+
+  setTimeout(() => {
+    button.style.color = 'black';
+    button.style.backgroundColor = '#f0f0f0';
+  }, 500);
+}
+
+const startButton = document.getElementById('start');
+const stepButton = document.getElementById('step');
+const stopButton = document.getElementById('stop');
+const clearButton = document.getElementById('clear');
+startButton.onclick = () => buttonClicked(startButton);
+stepButton.onclick = () => buttonClicked(stepButton);
+stopButton.onclick = () => buttonClicked(stopButton);
+clearButton.onclick = () => buttonClicked(clearButton);
