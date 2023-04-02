@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ライフゲーム</title>
+    <style>
+      /* ゲーム盤のスタイル */
+      #game-board {
+        display: grid;
+        grid-template-columns: repeat(50, 10px);
+        grid-template-rows: repeat(50, 10px);
+        border: 1px solid black;
+      }
+      /* 生きているセルのスタイル */
+      .alive {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-board"></div>
+    <script src="game.js"></script>
+  </body>
+</html>
